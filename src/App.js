@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="App">
       <Header title="Flight Search"></Header>
-      <SearchBox></SearchBox>
       <SearchForm></SearchForm>
     </div>
   );

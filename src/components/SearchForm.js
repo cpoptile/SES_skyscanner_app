@@ -3,43 +3,67 @@ import DatePicker from 'react-datepicker';
  
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './SearchForm.css';
 
 class SearchForm extends Component {
+
     constructor(){
         super();
         this.state = {
-            startDate: new Date()
+            departureDate: new Date(),
+            returnDate: new Date()
           };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleDepartureDate = this.handleDepartureDate.bind(this);
+        this.handleReturnDate = this.handleReturnDate.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
-    handleChange(date) {
+    handleDepartureDate(date) {
         this.setState({
-          startDate: date
+          departureDate: date
         })
-      }
+    }
+
+    handleReturnDate(date) {
+        this.setState({
+          returnDate: date
+        })
+    }
     
-      onFormSubmit(e) {
+    onFormSubmit(e) {
         e.preventDefault();
-        console.log(this.state.startDate)
-      }
-     
-      render() {
+        console.log(this.state.departureDate)
+        console.log(this.state.returnDate)
+    }
+    
+    handleSearch(e){
+
+    }
+
+    render() {
         return (
-          <form onSubmit={ this.onFormSubmit }>
-            <div className="form-group">
-              <DatePicker
-                  selected={ this.state.startDate }
-                  onChange={ this.handleChange }
-                  name="startDate"
-                  dateFormat="MM/dd/yyyy"
-              />
-              <button className="btn btn-primary">Show Date</button>
+            <div className = "searchForm">
+                <form onSubmit={ this.onFormSubmit }>
+                    <div className="date-pickers">
+                        <p> Start Date: </p>
+                        <DatePicker
+                            selected={ this.state.departureDate }
+                            onChange={ this.handleDepartureDate }
+                            name="departureDate"
+                            dateFormat="MM/dd/yyyy"
+                        />
+                        <p> End Date: </p>
+                        <DatePicker
+                            selected={ this.state.returnDate }
+                            onChange={ this.handleReturnDate }
+                            name="returnDate"
+                            dateFormat="MM/dd/yyyy"
+                        />
+                    </div>
+                </form>
             </div>
-          </form>
         );
-      }
+    }
       
 }
 
