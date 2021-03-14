@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Places from './Places';
 import './SearchBox.css';
+import Places from './Places';
+// import DatePicker from 'react-datepicker';
 
 function SearchBox() { 
-  const [places,setPlaces] = useState([])
-  const [query,setQuery] = useState("")
+  const [places, setPlaces] = useState([])
+  const [query, setQuery] = useState("")
   const [showPlaces,setShowPlaces] = useState(false)
 
   function handleSubmit(e) {
@@ -39,6 +40,9 @@ function SearchBox() {
               <button className="search">Submit</button>
          </form>
          { showPlaces ? <Places places={places}></Places> : <></>}
+         <div>
+            <label className="block">Departure date</label>
+          </div>
       </div>
   )
 }
