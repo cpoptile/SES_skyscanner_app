@@ -5,8 +5,8 @@ import logo from './skyscanner.png';
 function Header(props) { 
     return(
         <div className="header">
-            {props.title}
-            <img src={logo} className = "header-logo" alt="logo" />
+            <img src={logo} className = "header-logo"  width="200" alt="logo"  />
+            <span>{props.title}</span>
         </div>
     )
 }
