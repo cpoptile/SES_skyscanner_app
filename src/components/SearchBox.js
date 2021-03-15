@@ -14,6 +14,7 @@ function SearchBox() {
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const [showPlaces,setShowPlaces] = useState(false)
+  const [currency, setCurrency] = useState("USD")
 
   const handleStartDate = date => {
     setStartDate(date)
@@ -49,7 +50,7 @@ function SearchBox() {
   function handleSearch(e){
     e.preventDefault()
     async function findFlights() {
-      const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromLocation}/${toLocation}/${startDate.toISOString().substring(0,10)}` 
+      const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/${currency}/en-US/${fromLocation}/${toLocation}/${startDate.toISOString().substring(0,10)}` 
       const reqOptions = {
         method: 'GET',
         headers: {
@@ -108,6 +109,13 @@ function SearchBox() {
               onChange={handleEndDate}
             />
           </div>
+            <select
+            value= {currency}
+            onChange = {e => setCurrency(e.target.value)}
+            >
+              <option value = "USD">USD</option>
+              <option value = "GB">GB</option>
+            </select>
         </div>
     );
 }
