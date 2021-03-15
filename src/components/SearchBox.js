@@ -3,6 +3,9 @@ import './SearchBox.css';
 import Places from './Places';
 import Datepicker from 'react-datepicker';
 import Flights from './Flights';
+ 
+import 'react-datepicker/dist/react-datepicker.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SearchBox() { 
   const [flights, setFlights] = useState([])
@@ -109,7 +112,7 @@ function SearchBox() {
               onChange={handleEndDate}
             />
           </div>
-            <select
+          <select
             value= {currency}
             onChange = {e => setCurrency(e.target.value)}
             >

@@ -1,4 +1,5 @@
 .searchbox {
+  background-color: #090f63;
   width: 80%;
   margin: 0 auto; 
   padding: 20px; 
@@ -8,6 +9,23 @@
   display: flex; 
   flex-direction: column;
   align-items: center;
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
+}
+
+.searchForm{
+  background-color: #090f63;
+  width: 80%;
+  margin: 0 auto; 
+  padding: 20px; 
+  border: 1px dotted black; 
+  height: 80vh; 
+  overflow-y: auto;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  border-radius: 25px;
 }
 
 form {
@@ -46,4 +64,31 @@ label {
   border: 2px solid #ccc;
   border-radius: 5px;
 
+}
+
+.searchForm{
+    border-radius: 25px;
+    padding: 20px;
+    width: 80%;
+    height: 150px;
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: rgb(255, 255, 255);
+    margin: auto;
+}
+
+.date_pickers{
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+}
+
+.search{
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    width: 80%;
+    height: 10px;
 }
