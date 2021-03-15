@@ -40,6 +40,7 @@ function SearchBox() {
           setPlaces(response.Places)
           
       }
+
       fetchMyAPI()
       setQuery("")
       setShowPlaces(true)
@@ -48,23 +49,30 @@ function SearchBox() {
   function handleSearch(e){
     e.preventDefault()
     async function findFlights() {
-      const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromLocation}/${toLocation}/${startDate}?` +
-      new URLSearchParams({ inboundpartialdate: endDate });
+      const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromLocation}/${toLocation}/${startDate.toISOString().substring(0,10)}` 
       const reqOptions = {
         method: 'GET',
         headers: {
             "x-rapidapi-key": "42a5ad4309msh0f7539296c11895p172628jsn1bac294685a3",
             "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+            "useQueryString": true
         }
       }
       let response = await fetch(url, reqOptions)
+      console.log(url)
       response = await response.json();
       console.log(response)
-      setFlights(response.Flights)
+      console.log(startDate.toDateString().substring(0,6))
+      console.log(startDate.toISOString().substring(0,10))
+      console.log(startDate.toString())
+      console.log(startDate.valueOf())
+      setFlights(response.Quotes)
 
     }
 
+    console.log(startDate)
     findFlights()
+    console.log(startDate)
     setToLocation("")
     setFromLocation("")
     setShowFlights(true)
