@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './SearchBox.css';
 import Places from './Places';
-// import DatePicker from 'react-datepicker';
 
 function SearchBox() { 
   const [places, setPlaces] = useState([])
@@ -11,7 +10,6 @@ function SearchBox() {
   function handleSubmit(e) {
       e.preventDefault()
       async function fetchMyAPI() {
-        let mounted = true;
           const reqOptions = {
               method: 'GET',
               headers: {
@@ -23,28 +21,33 @@ function SearchBox() {
           let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?" + new URLSearchParams({query: query}), reqOptions)
           response = await response.json()
           console.log(response.Places)
-          if (mounted){
-            setPlaces(response.Places)
-          }
+          setPlaces(response.Places)
+          
       }
       fetchMyAPI()
-      setShowPlaces(true)
       setQuery("")
+      setShowPlaces(true)
   }
 
-  return(
-      <div className="searchbox">
-         <form onSubmit={handleSubmit}>
-              <label htmlFor="queryInput">State or Country:</label>
-              <input id="queryInput" value={query} onChange={e => setQuery(e.target.value)} required/>
-              <button className="search">Submit</button>
-         </form>
-         { showPlaces ? <Places places={places}></Places> : <></>}
-         <div>
-            <label className="block">Departure date</label>
-          </div>
-      </div>
-  )
+  // function doAjaxRequest(){
+  //   $.ajax({
+  //     url: "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/"
+  //     data: 
+  //   })
+  // }
+  
+    return(
+       <div className="searchbox">
+          <form onSubmit={handleSubmit}>
+                <label htmlFor="queryInput">State or Country:</label>
+                <input id="queryInput" value={query} onChange={e => setQuery(e.target.value)} required/>
+                <button className="search">Submit</button>
+          </form> { showPlaces ? <Places places={places}></Places> : <></>}
+          <div>
+              <label className="block">Departure date</label>
+            </div>
+        </div>
+    );
 }
 
 export default SearchBox;

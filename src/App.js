@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <Header title="Flight Search"></Header>
       <SearchForm></SearchForm>
+      <SearchBox></SearchBox>
     </div>
   );
 }

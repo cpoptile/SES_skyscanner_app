@@ -18,3 +18,10 @@
     flex-direction: row;
     align-items: center;
 }
+
+.search{
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    width: 80%;
+    height: 10px;
+}
