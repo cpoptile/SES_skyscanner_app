@@ -93,25 +93,36 @@ function SearchBox() {
   
     return(
        <div className="searchbox">
-          <form onSubmit={handleSubmit}>
+          <form className="searchForm" onSubmit={handleSubmit}>
+            <div className="destinations">
+              <div>
                 <label htmlFor="queryInput">From:</label>
                 <input id="queryInput" value={fromLocation} onChange={e => setFromLocation(e.target.value)} required/>
+              </div>
+              <div>
                 <label htmlFor="queryInput">To:</label>
                 <input id="queryInput" value={toLocation} onChange={e => setToLocation(e.target.value)} required/>
+              </div>
                 <button className="search" onClick ={handleSearch}>Submit</button>
+            </div>
+            <div className="datePickers">
+              <div>
+                <label>StartDate: </label>
+                <Datepicker className ="calender"
+                  selected={startDate}
+                  onChange={handleStartDate}
+              /></div>
+              <div>
+                <label>End: </label>
+                <Datepicker
+                  selected={endDate}
+                  onChange={handleEndDate}
+              /></div>
+            </div>
           </form> 
           { showPlaces ? <Places places={places}></Places> : <></>}
           { showFlights ? <Flights quotes={flights}></Flights> : <></>}
-          <div>
-            <Datepicker
-              selected={startDate}
-              onChange={handleStartDate}
-            />
-            <Datepicker
-              selected={endDate}
-              onChange={handleEndDate}
-            />
-          </div>
+          
           <select
             value= {currency}
             onChange = {e => setCurrency(e.target.value)}
