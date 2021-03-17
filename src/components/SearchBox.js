@@ -6,6 +6,7 @@ import Flights from './Flights';
  
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Currencies from './Currencies';
 
 function SearchBox() { 
   const [flights, setFlights] = useState([])
@@ -74,6 +75,7 @@ function SearchBox() {
 
     }
 
+    console.log(currency)
     console.log(startDate)
     findFlights()
     console.log(startDate)
@@ -121,14 +123,14 @@ function SearchBox() {
             </div>
           </form> 
           { showFlights ? <Flights quotes={flights}></Flights> : <></>}
-          
-          <select
+          <Currencies value={currency} onChange={e => setCurrency(e.target.state.selectedCurrency)}></Currencies> 
+          {/* <select
             value= {currency}
             onChange = {e => setCurrency(e.target.value)}
             >
               <option value = "USD">USD</option>
               <option value = "GBP">GBP</option>
-            </select>
+            </select> */}
         </div>
     );
 }
