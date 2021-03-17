@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import logo from './skyscanner.png';
+import logo from './sky-logo.png';
 
 function Header(props) { 
     return(

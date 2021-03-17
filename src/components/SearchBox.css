@@ -1,46 +1,49 @@
 .searchbox {
-  background-color: #a1a3b9;
-  width: 80%;
+  background-color: #f1f1f3;
+  width: 100%;
   margin: 0 auto; 
   padding: 20px; 
   overflow-y: auto;
+  overflow-x: auto;
   display: flex; 
   flex-direction: column;
   align-items: center;
   color: rgb(255, 255, 255);
-  border-radius: 25px;
 }
 
-.destinations{
-  background-color: #090f63;
-  padding: 20px; 
-  overflow-y: auto;
+.destinations {
+  width: 100%;
+  /* background-color: #090f63; */
+  padding: 20px;
+  padding-top: 0px; 
   display: flex; 
   flex-direction: row;
   align-items: center;
   color: rgb(255, 255, 255);
 }
 
-
-form {
-  background-color: #faaa42;
-  display: flex;
+.toFrom {
+  width: 100%;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 10px;
 }
 
 
 label {
-  font-size: 20px;
+  font-size: .75rem;
+  width: 100%;
+  font-weight: 700;
+  line-height: 1rem;
+  height: 1rem;
   text-align: left;
-  margin-bottom: 0;
+  margin: 0px;
 }
 
 
 #queryInput {
   box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
   border-radius: 5px;
+  width: 100%;
   padding: 10px;
   margin: 0px;
   height: 40px;
@@ -54,9 +57,9 @@ label {
 }
 
 .searchForm{
-  background-color: #831a71;
+  width: 80%;
+  background-color: #040553;
   padding: 20px; 
-  overflow-y: auto;
   display: flex; 
   flex-direction: column;
   align-items: center;
@@ -65,11 +68,13 @@ label {
 }
 
 .datePickers{
-  background-color: #1a8342;
-    display: flex; 
-    flex-direction: row;
-    padding: 50px;
-    align-items: center;
+  /* background-color: #3f1a83; */
+  display: flex; 
+  flex-direction: row;
+  padding: 0px;
+  align-items: center;
+  text-align: left;
+  width: 70%;
 }
 
 .calender{
@@ -79,11 +84,16 @@ label {
 .search{
     background-color: rgb(255, 255, 255);
     color: #000;
-    width: 80%;
+    width: 100%;
     height: 10px;
-    padding: 20px 20px;
+    padding: 20px;
     border-radius: 12px;
-    display: block;
     line-height: 0px;
     font-size: 16px;
+    align-items: center;
+}
+
+.dates{
+  width: 100%;
+  align-items: center;
 }

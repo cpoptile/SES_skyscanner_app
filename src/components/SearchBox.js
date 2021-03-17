@@ -95,32 +95,31 @@ function SearchBox() {
        <div className="searchbox">
           <form className="searchForm" onSubmit={handleSubmit}>
             <div className="destinations">
-              <div>
-                <label htmlFor="queryInput">From:</label>
+              <div className="toFrom">
+                <label htmlFor="queryInput">From</label>
                 <input id="queryInput" value={fromLocation} onChange={e => setFromLocation(e.target.value)} required/>
               </div>
-              <div>
-                <label htmlFor="queryInput">To:</label>
+              <div className="toFrom">
+                <label htmlFor="queryInput">To</label>
                 <input id="queryInput" value={toLocation} onChange={e => setToLocation(e.target.value)} required/>
               </div>
-                <button className="search" onClick ={handleSearch}>Submit</button>
             </div>
             <div className="datePickers">
-              <div>
-                <label>StartDate: </label>
+              <div className="dates">
+                <label>Depart</label>
                 <Datepicker className ="calender"
                   selected={startDate}
                   onChange={handleStartDate}
               /></div>
-              <div>
-                <label>End: </label>
+              <div className="dates">
+                <label>Return</label>
                 <Datepicker
                   selected={endDate}
                   onChange={handleEndDate}
               /></div>
+              <button className="search" onClick ={handleSearch}>Search Flights</button>
             </div>
           </form> 
-          { showPlaces ? <Places places={places}></Places> : <></>}
           { showFlights ? <Flights quotes={flights}></Flights> : <></>}
           
           <select
@@ -128,7 +127,7 @@ function SearchBox() {
             onChange = {e => setCurrency(e.target.value)}
             >
               <option value = "USD">USD</option>
-              <option value = "GB">GB</option>
+              <option value = "GBP">GBP</option>
             </select>
         </div>
     );
