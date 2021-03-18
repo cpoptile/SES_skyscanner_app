@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SearchBox.css';
 import Places from './Places';
 import Datepicker from 'react-datepicker';
@@ -26,6 +26,10 @@ function SearchBox() {
 
   const handleEndDate = date => {
     setEndDate(date)
+  }
+
+  function setC(target) {
+    console.log("PENIS" +target)
   }
 
   function handleSubmit(e) {
@@ -86,12 +90,18 @@ function SearchBox() {
     }
 
 
+    
   // function doAjaxRequest(){
   //   $.ajax({
   //     url: "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/"
   //     data: 
   //   })
   // }
+
+  function getCurrency (value) { 
+    setCurrency(value)
+    console.log("THE BIGGEST TEST" + value)
+  }
   
     return(
        <div className="searchbox">
@@ -123,7 +133,7 @@ function SearchBox() {
             </div>
           </form> 
           { showFlights ? <Flights quotes={flights}></Flights> : <></>}
-          <Currencies value={currency} onChange={e => setCurrency(e.target.state.selectedCurrency)}></Currencies> 
+          <Currencies value={currency} sendCurrency={getCurrency} ></Currencies> 
           {/* <select
             value= {currency}
             onChange = {e => setCurrency(e.target.value)}

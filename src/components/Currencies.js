@@ -1,11 +1,13 @@
 import { Component } from "react";
 
 class Currencies extends Component {
+
     state = {
         currencies: [],
         selectedCurrency: "",
         validationError: ""
     };
+
 
     componentDidMount() {
         fetch(
@@ -21,9 +23,7 @@ class Currencies extends Component {
             return response.json();
           })
           .then(data => {
-              console.log(data)
             let teamsFromApi = data.Currencies.map(currency => {
-                console.log(currency.Code)
               return { value: currency.Code, display: currency.Symbol + " - " + currency.Code };
             });
             this.setState({
@@ -41,20 +41,22 @@ class Currencies extends Component {
           });
         }
 
+        updateCurrency = (target) => {
+            this.props.sendCurrency(target)
+            this.setState({selectedCurrency:target,
+                            validationError: target === ""
+                              ? "You must select your favourite team"
+                              : ""})
+        }
+
+
         render() {
             return (
               <div>
                 <select
                   value={this.state.selectedCurrency}
-                  onChange={e =>
-                    this.setState({
-                      selectedCurrency: e.target.value,
-                      validationError:
-                        e.target.value === ""
-                          ? "You must select your favourite team"
-                          : ""
-                    })
-                  }
+                  onChange={e=> this.updateCurrency(e.target.value)
+                  }              
                 >
                   {this.state.currencies.map(currency => (
                     <option
@@ -65,6 +67,7 @@ class Currencies extends Component {
                     </option>
                   ))}
                 </select>
+
                 <div
                   style={{
                     color: "red",
