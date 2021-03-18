@@ -2,7 +2,7 @@
   "name": "ses-skyscanner-app",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://cpoptile.github.io/SES_skyscanner_app",
+  "homepage": "https://cpoptile.github.io/SES_skyscanner_app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -19,11 +19,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
