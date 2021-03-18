@@ -3,6 +3,7 @@ import './SearchBox.css';
 import Places from './Places';
 import Datepicker from 'react-datepicker';
 import Flights from './Flights';
+import FlightTable from './FlightTable';
  
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,10 +27,6 @@ function SearchBox() {
 
   const handleEndDate = date => {
     setEndDate(date)
-  }
-
-  function setC(target) {
-    console.log("PENIS" +target)
   }
 
   function handleSubmit(e) {
@@ -100,7 +97,6 @@ function SearchBox() {
 
   function getCurrency (value) { 
     setCurrency(value)
-    console.log("THE BIGGEST TEST" + value)
   }
   
     return(
@@ -133,6 +129,7 @@ function SearchBox() {
             </div>
           </form> 
           { showFlights ? <Flights quotes={flights}></Flights> : <></>}
+          {/* { showFlights ? <FlightTable quotes={flights}></FlightTable> : <></>} */}
           <Currencies value={currency} sendCurrency={getCurrency} ></Currencies> 
           {/* <select
             value= {currency}

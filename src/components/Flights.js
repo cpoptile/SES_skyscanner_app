@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Flights.css';
 
 function Flights(props) { 
@@ -6,7 +6,6 @@ function Flights(props) {
     return(
         <div className="quotes">
             <table>
-                <caption> Flights Found </caption>
                 <thead>
                     <tr>
                         <th>Quote ID</th>
@@ -31,6 +30,5 @@ function Flights(props) {
          </div>
     );
 }
-
 
 export default Flights;
