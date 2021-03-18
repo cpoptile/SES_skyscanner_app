@@ -4,7 +4,7 @@ import './Flights.css';
 function Flights(props) { 
 
     return(
-        <div className="quotes">
+        <div className="flights">
             <table>
                 <thead>
                     <tr>

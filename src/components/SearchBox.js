@@ -128,7 +128,7 @@ function SearchBox() {
               <button className="search" onClick ={handleSearch}>Search Flights</button>
             </div>
           </form> 
-          { showFlights ? <Flights quotes={flights}></Flights> : <></>}
+          { showFlights ? <Flights quotes={flights} className="flightTable"></Flights> : <></>}
           {/* { showFlights ? <FlightTable quotes={flights}></FlightTable> : <></>} */}
           <Currencies value={currency} sendCurrency={getCurrency} ></Currencies> 
           {/* <select
