@@ -24,6 +24,8 @@ function SearchBox() {
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const [currency, setCurrency] = useState("USD")
+  const [error, setError] = useState("")
+  const [showError, setShowError] = useState(false)
 
   // Const handles setting the start date of flight inquiry.
   const handleStartDate = date => {
@@ -59,12 +61,27 @@ function SearchBox() {
       }
       // Get response from API and record into a table.
       let response = await fetch(url, reqOptions)
-      response = await response.json();
-      setFlights(response.Quotes)
+      console.log(response.status)
+      if (response.status !== 404) {
+        setShowError(false)
+        response = await response.json();
+        if (response.Quotes.length !== 0) {
+          setFlights(response.Quotes)
+          setShowFlights(true)
+        } else {
+          setShowFlights(false)
+          setShowError(true)
+          setError("No flights matching the inquiry can be displayed")
+        }
+      } else {
+        setShowFlights(false)
+        setShowError(true)
+        setError("Please input valid fields")
+        console.log("error boi")
+      }
     }
-    // Call API fetch function and reset inputs
+    // Call API fetch function
     findFlights()
-    setShowFlights(true)
   }
 
   /**
@@ -134,8 +151,16 @@ function SearchBox() {
       </form>
       {/* remainder of page dedicated to a table of search results */}
       { showFlights ? <FlightTable quotes={flights} className="flightTable"></FlightTable> : <></>}
-      {/* { showFlights ? <Flights quotes={flights} className="flightTable"></Flights> : <></>} */}
+      {/* error popup */}
+      { showError ? 
+        <div class="alert">
+        <span class="closebtn" >
+        </span> 
+        <strong>Error!</strong> {error}
+        </div> 
+        : <></>}
       {/* currency dropdown menu */}
+      { showError}
       <Currencies value={currency} sendCurrency={getCurrency} ></Currencies>
     </div>
   );

@@ -58,7 +58,6 @@ function Auto(props) {
                     }
                 }
                 let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?" + new URLSearchParams({ query: value }), reqOptions)
-                console.log(value)
                 console.log(response)
                 response = await response.json()
                 console.log(response.Places)
@@ -117,7 +116,7 @@ function Auto(props) {
                     {options.map(place =>
                         <option
                             key={place.value}
-                            value={props.value}
+                            value={place.value}
                             onClick={() => updateSearch(place.value)}
                             required>
                             {place.display}
