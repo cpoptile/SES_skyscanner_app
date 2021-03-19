@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './SearchBox.css';
 import Places from './Places';
 import Datepicker from 'react-datepicker';
 import Flights from './Flights';
 import FlightTable from './FlightTable';
+import Autosuggest from 'react-autosuggest';
  
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Currencies from './Currencies';
+import Locations from './Locations';
+import Auto from './Locations';
 
 function SearchBox() { 
   const [flights, setFlights] = useState([])
@@ -54,6 +57,7 @@ function SearchBox() {
 
   function handleSearch(e){
     e.preventDefault()
+    console.log(toLocation)
     async function findFlights() {
       const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/${currency}/en-US/${fromLocation}/${toLocation}/${startDate.toISOString().substring(0,10)}` 
       const reqOptions = {
@@ -86,18 +90,18 @@ function SearchBox() {
 
     }
 
-
-    
-  // function doAjaxRequest(){
-  //   $.ajax({
-  //     url: "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/"
-  //     data: 
-  //   })
-  // }
-
   function getCurrency (value) { 
     setCurrency(value)
   }
+
+  function getToCity (value) {
+    setToLocation(value)
+  }
+
+  function getFromCity (value) {
+    setFromLocation(value)
+  }
+
   
     return(
        <div className="searchbox">
@@ -105,11 +109,13 @@ function SearchBox() {
             <div className="destinations">
               <div className="toFrom">
                 <label htmlFor="queryInput">From</label>
-                <input id="queryInput" value={fromLocation} onChange={e => setFromLocation(e.target.value)} required/>
+                <Locations value={fromLocation} onChange={getFromCity} required></Locations>
+                {/* <input id="queryInput" value={fromLocation} onChange={e => setFromLocation(e.target.value)} required/> */}
               </div>
               <div className="toFrom">
                 <label htmlFor="queryInput">To</label>
-                <input id="queryInput" value={toLocation} onChange={e => setToLocation(e.target.value)} required/>
+                <Locations value={toLocation} onChange={getToCity} required></Locations>
+                {/* <input id="queryInput" value={toLocation} onChange={e => setToLocation(e.target.value)} required/> */}
               </div>
             </div>
             <div className="datePickers">
