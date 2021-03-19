@@ -1,6 +1,13 @@
+// IMPORTS
 import React, { useEffect, useState, useRef } from 'react';
 import './Locations.css';
 
+/**
+ * Description: 
+ * 
+ * @param {*} props 
+ * @returns An input field that autocompletes a user's input
+ */
 function Auto(props) {
     const [display, setDisplay] = useState(false);
     const [options, setOptions] = useState([]);
