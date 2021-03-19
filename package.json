@@ -8,7 +8,6 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
-    "gh-pages": "^3.1.0",
     "jQuery": "^1.7.4",
     "moment": "^2.29.1",
     "react": "^17.0.1",
@@ -23,7 +22,7 @@
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "test": "react-scripts test",
-    "deploy": "gh-pages -b gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
