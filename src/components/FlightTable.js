@@ -27,13 +27,14 @@ function FlightTable(props) {
 		else if (sort === 'default') nextSort = 'down';
 
 		console.log(flights)
-		setFlights(props)
+		setFlights(props.Quotes)
 
 		console.log(props.quotes)
 		console.log(sort)
 		console.log(flights)
 		setSort(nextSort)
 	};
+
 
 	return (
 		<div className="flights">
@@ -43,25 +44,33 @@ function FlightTable(props) {
 			<table>
 				<thead>
 					<tr>
-						<th>Quote ID</th>
+						<th>Direct Flight?</th>
+						{/* <th>Carrier Name</th> */}
+						<th>Outbound Leg Departure Date</th>
 						<th>Min Price
 							<button onClick={onSortChange}>
 								<i className={`fas fa-${sortTypes[sort].class}`} />
 							</button>
 						</th>
-						<th>Outbound Carrier IDs</th>
-						<th>Outbound Carrier Name</th>
-						<th>Outbound Leg Departure Date</th>
-						<th>Quote Date and Time</th>
 					</tr>
 				</thead>
 				<tbody>
-					{props.quotes.sort(sortTypes[sort].fn).map(quote => {
+					{console.log(props),
+					console.log(props.Quotes),
+					props.quotes.Quotes.sort(sortTypes[sort].fn).map(quote => {
+						let departDate = new Date(quote.OutboundLeg.DepartureDate.toString())
+						let direct
+						console.log(props)
+						if (!quote.Direct){ 
+							direct = "No"
+						} else {
+							direct = "Yes"
+						}
 						return (<tr id={quote.QuoteId}>
+							<th>{direct}</th>
+							{/* <th>{props.quotes.Carriers[0].Name}</th> */}
+							<th>{departDate.toDateString()}</th>
 							<th>${quote.MinPrice}</th>
-							<th>{quote.OutboundLeg.CarrierIds}</th>
-							<th>{quote.OutboundLeg.DepartureDate}</th>
-							<th>{quote.QuoteDateTime}</th>
 						</tr>);
 					})}
 				</tbody>

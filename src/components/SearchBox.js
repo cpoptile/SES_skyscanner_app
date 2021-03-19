@@ -61,12 +61,13 @@ function SearchBox() {
       }
       // Get response from API and record into a table.
       let response = await fetch(url, reqOptions)
+      console.log(url)
       console.log(response.status)
       if (response.status !== 404) {
         setShowError(false)
         response = await response.json();
         if (response.Quotes.length !== 0) {
-          setFlights(response.Quotes)
+          setFlights(response)
           setShowFlights(true)
         } else {
           setShowFlights(false)
