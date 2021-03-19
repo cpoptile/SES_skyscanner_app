@@ -93,6 +93,7 @@ function Auto(props) {
         <div ref={wrapperRef} className="flex-container flex-column pos-rel">
             <input
                 id="auto"
+                autocomplete="off"
                 onClick={() => setDisplay(!display)}
                 placeholder="Type to search"
                 value={search}

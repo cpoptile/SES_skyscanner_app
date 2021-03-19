@@ -12,7 +12,7 @@ input {
     font-size: 18px;
     text-transform: capitalize;
     width: 100%;
-    border: 2px solid #ccc;
+    border: 2px solid rgb(255, 255, 255);
     border-radius: 5px;
     margin: 0px;
 }
@@ -25,12 +25,12 @@ input {
     position: absolute;
     border-width: 0px 1px 1px 1px;
     border-style: solid;
-    border-color: goldenrod;
     background-color: whitesmoke;
     color: black;
     right: 10px;
     top: 52px;
     width: 520px;
+    z-index: 6;
 }
   
 .option {

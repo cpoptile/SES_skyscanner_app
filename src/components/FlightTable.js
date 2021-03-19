@@ -37,6 +37,9 @@ function FlightTable(props) {
 
 	return (
 		<div className="flights">
+			<head>
+				<script src="https://kit.fontawesome.com/ec53680016.js" crossorigin="anonymous"></script>
+			</head>
 			<table>
 				<thead>
 					<tr>
