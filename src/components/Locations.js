@@ -16,29 +16,9 @@ function Auto(props) {
 
     function noSearch(e) {
         e.preventDefault()
+        console.log("peee");
         async function fetchInitialList() {
-            const reqOptions = {
-                method: 'GET',
-                headers: {
-                    "x-rapidapi-key": "42a5ad4309msh0f7539296c11895p172628jsn1bac294685a3",
-                    "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-                    "useQueryString": true
-                }
-            }
-            let response = fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?query=-/", reqOptions)
-            response = await response.data.json()
-            console.log(response.Places)
-            setOptions(response)
-        }
-        fetchInitialList()
-
-    }
-
-    function handleSearch(e) {
-        e.preventDefault()
-        let value = e.target.value
-        setSearch(value)
-        async function fetchPlaces() {
+            setSearch("")
             const reqOptions = {
                 method: 'GET',
                 headers: {
@@ -46,20 +26,53 @@ function Auto(props) {
                     "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
                 }
             }
-            let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?" + new URLSearchParams({ query: value }), reqOptions)
-            console.log(value)
+            let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?query=-/", reqOptions)
             console.log(response)
             response = await response.json()
             console.log(response.Places)
             setOptions(response.Places.map(place => {
-                return {value: place.CityId, display: place.PlaceName }
+                return { value: place.CityId, display: place.PlaceName }
             }))
         }
-        fetchPlaces()
+        fetchInitialList()
+    }
+
+    function handleSearch(e) {
+        console.log(e)
+        console.log(e.value)
+        console.log(e.target.value)
+        let value = e.target.value
+        console.log(e.target.value = "-")
+        if (!value) {
+            noSearch(e)
+        } else {
+            e.preventDefault()
+
+            setSearch(value)
+            async function fetchPlaces() {
+                const reqOptions = {
+                    method: 'GET',
+                    headers: {
+                        "x-rapidapi-key": "42a5ad4309msh0f7539296c11895p172628jsn1bac294685a3",
+                        "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+                    }
+                }
+                let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?" + new URLSearchParams({ query: value }), reqOptions)
+                console.log(value)
+                console.log(response)
+                response = await response.json()
+                console.log(response.Places)
+                setOptions(response.Places.map(place => {
+                    return { value: place.CityId, display: place.PlaceName }
+                }))
+            }
+            fetchPlaces()
+        }
+
     }
 
     const sendCity = () => {
-        console.log({search})
+        console.log({ search })
         return (
             search
         );
@@ -84,7 +97,6 @@ function Auto(props) {
         props.onChange(place)
         setSearch(place)
         sendCity(place)
-        console.log(place)
         setDisplay(false)
     };
 
@@ -104,12 +116,12 @@ function Auto(props) {
                 <div className="autoContainer">
                     {options.map(place =>
                         <option
-                        key={place.value}
-                        value={props.value}
-                        onClick={() => updateSearch(place.value)}
-                        >
-                        {place.display}
-                      </option>)}
+                            key={place.value}
+                            value={props.value}
+                            onClick={() => updateSearch(place.value)}
+                            required>
+                            {place.display}
+                        </option>)}
                 </div>
             )}
         </div>
