@@ -31,7 +31,10 @@ function Auto(props) {
             response = await response.json()
             console.log(response.Places)
             setOptions(response.Places.map(place => {
-                return { value: place.CityId, display: place.PlaceName }
+                return { 
+                    value: place.CityId, 
+                    display: place.PlaceName
+                     }
             }))
         }
         fetchInitialList()
@@ -62,7 +65,16 @@ function Auto(props) {
                 response = await response.json()
                 console.log(response.Places)
                 setOptions(response.Places.map(place => {
-                    return { value: place.CityId, display: place.PlaceName }
+                    let idCode
+                    if (place.CityId === "-sky"){
+                        idCode = place.PlaceId
+                    } else {
+                        idCode = place.CityId
+                    }
+                    return { 
+                        value: idCode, 
+                        display: place.PlaceName 
+                    }
                 }))
             }
             fetchPlaces()
@@ -93,9 +105,9 @@ function Auto(props) {
     };
 
     const updateSearch = place => {
-        props.onChange(place)
-        setSearch(place)
-        sendCity(place)
+        props.onChange(place.value)
+        setSearch(place.display)
+        sendCity(place.value)
         setDisplay(false)
     };
 
@@ -116,8 +128,8 @@ function Auto(props) {
                     {options.map(place =>
                         <option
                             key={place.value}
-                            value={place.value}
-                            onClick={() => updateSearch(place.value)}
+                            value={place.display}
+                            onClick={() => updateSearch(place)}
                             required>
                             {place.display}
                         </option>)}
