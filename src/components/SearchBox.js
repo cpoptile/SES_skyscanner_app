@@ -1,20 +1,20 @@
-/** 
- * Description: SearchBox.js contains all fields neccessary to make a flight search
- * with the input of destinations, dates, and currency used.
- * 
- * @returns default SearchBox component
-*/
-
 // IMPORTS
 import React, { useState } from 'react';
 import Datepicker from 'react-datepicker';
 import Flights from './Flights';
+import FlightTable from './FlightTable';
 import Currencies from './Currencies';
 import Locations from './Locations';
 import './SearchBox.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+/** 
+ * Description: SearchBox.js contains all fields neccessary to make a flight search
+ * with the input of destinations, dates, and currency used.
+ * 
+ * @returns default SearchBox component
+*/
 function SearchBox() {
   // Hook statements used to keep track of input.
   const [flights, setFlights] = useState([])
@@ -64,8 +64,6 @@ function SearchBox() {
     }
     // Call API fetch function and reset inputs
     findFlights()
-    setToLocation("")
-    setFromLocation("")
     setShowFlights(true)
   }
 
@@ -135,7 +133,8 @@ function SearchBox() {
         </div>
       </form>
       {/* remainder of page dedicated to a table of search results */}
-      { showFlights ? <Flights quotes={flights} className="flightTable"></Flights> : <></>}
+      { showFlights ? <FlightTable quotes={flights} className="flightTable"></FlightTable> : <></>}
+      {/* { showFlights ? <Flights quotes={flights} className="flightTable"></Flights> : <></>} */}
       {/* currency dropdown menu */}
       <Currencies value={currency} sendCurrency={getCurrency} ></Currencies>
     </div>
