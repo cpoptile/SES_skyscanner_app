@@ -1,11 +1,11 @@
 // IMPORTS
 import React, { useState } from 'react';
 import Datepicker from 'react-datepicker';
-import Flights from './Flights';
 import FlightTable from './FlightTable';
 import Currencies from './Currencies';
 import Locations from './Locations';
 import './SearchBox.css';
+import './Flights.css'
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -125,12 +125,10 @@ function SearchBox() {
           <div className="toFrom">
             <label htmlFor="queryInput">From</label>
             <Locations value={fromLocation} onChange={getFromCity} required></Locations>
-            {/* <input id="queryInput" value={fromLocation} onChange={e => setFromLocation(e.target.value)} required/> */}
           </div>
           <div className="toFrom">
             <label htmlFor="queryInput">To</label>
             <Locations value={toLocation} onChange={getToCity} required></Locations>
-            {/* <input id="queryInput" value={toLocation} onChange={e => setToLocation(e.target.value)} required/> */}
           </div>
         </div>
         {/* div for date inputs and search button*/}

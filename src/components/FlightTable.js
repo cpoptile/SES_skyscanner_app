@@ -1,10 +1,20 @@
 // IMPORTS
 import React, { useState } from 'react';
 
+/**
+ * Function creates a table that displays flight information
+ * that can be sorted by dollar amount.
+ * 
+ * @param {*} props Objects returned from API call
+ * @returns a table containing flight information 
+ */
 function FlightTable(props) {
 	const [sort, setSort] = useState("default");
 	const [flights, setFlights] = useState([]);
 
+	/**
+	 * Const initializes the sort methods to be used on the table.
+	 */
 	const sortTypes = {
 		up: {
 			class: 'sort-up',
@@ -20,6 +30,9 @@ function FlightTable(props) {
 		}
 	};
 
+	/**
+	 * Const changes sort as button is clicked.
+	 */
 	const onSortChange = () => {
 		let nextSort;
 
@@ -27,21 +40,29 @@ function FlightTable(props) {
 		else if (sort === 'up') nextSort = 'default';
 		else if (sort === 'default') nextSort = 'down';
 
-		console.log(flights)
 		setFlights(props.Quotes)
-
-		console.log(props.quotes)
-		console.log(sort)
 		console.log(flights)
 		setSort(nextSort)
 	};
 
+	// function mapCarriers() {
+	// 	console.log("TESTTT")
+	// 	setCarriers(props.quotes.Carriers.map(carrier => {
+	// 		return {
+	// 			value: carrier.CarrierId,
+	// 			name: carrier.Name
+	// 		}
+	// 	}))
 
+	// }
+
+
+
+	/**
+	 * Table containing flight information is returned.
+	 */
 	return (
 		<div className="flights">
-			<head>
-				<script src="https://kit.fontawesome.com/ec53680016.js" crossorigin="anonymous"></script>
-			</head>
 			<table>
 				<thead>
 					<tr>
@@ -56,24 +77,21 @@ function FlightTable(props) {
 					</tr>
 				</thead>
 				<tbody>
-					{console.log(props),
-					console.log(props.Quotes),
-					props.quotes.Quotes.sort(sortTypes[sort].fn).map(quote => {
-						let departDate = new Date(quote.OutboundLeg.DepartureDate.toString())
-						let direct
-						console.log(props)
-						if (!quote.Direct){ 
-							direct = "No"
-						} else {
-							direct = "Yes"
-						}
-						return (<tr id={quote.QuoteId}>
-							<th>{direct}</th>
-							{/* <th>{props.quotes.Carriers[0].Name}</th> */}
-							<th>{departDate.toDateString()}</th>
-							<th>{props.quotes.Currencies[0].Symbol + " " + quote.MinPrice}</th>
-						</tr>);
-					})}
+					{props.quotes.Quotes.sort(sortTypes[sort].fn).map(quote => {
+							let departDate = new Date(quote.OutboundLeg.DepartureDate.toString())
+							let direct
+							if (!quote.Direct) {
+								direct = "No"
+							} else {
+								direct = "Yes"
+							}
+							return (<tr id={quote.QuoteId}>
+								<th>{direct}</th>
+								{/* <th>{carriers.get(quote.OutboundLeg.CarrierIds[0])}</th> */}
+								<th>{departDate.toDateString()}</th>
+								<th>{props.quotes.Currencies[0].Symbol + " " + quote.MinPrice}</th>
+							</tr>);
+						})}
 				</tbody>
 			</table>
 		</div>
@@ -81,4 +99,5 @@ function FlightTable(props) {
 
 }
 
+// Default export statement
 export default FlightTable;
