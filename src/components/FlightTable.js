@@ -45,18 +45,6 @@ function FlightTable(props) {
 		setSort(nextSort)
 	};
 
-	// function mapCarriers() {
-	// 	console.log("TESTTT")
-	// 	setCarriers(props.quotes.Carriers.map(carrier => {
-	// 		return {
-	// 			value: carrier.CarrierId,
-	// 			name: carrier.Name
-	// 		}
-	// 	}))
-
-	// }
-
-
 
 	/**
 	 * Table containing flight information is returned.
@@ -67,7 +55,6 @@ function FlightTable(props) {
 				<thead>
 					<tr>
 						<th>Direct Flight?</th>
-						{/* <th>Carrier Name</th> */}
 						<th>Outbound Leg Departure Date</th>
 						<th>Min Price
 							<button onClick={onSortChange}>
@@ -87,7 +74,6 @@ function FlightTable(props) {
 							}
 							return (<tr id={quote.QuoteId}>
 								<th>{direct}</th>
-								{/* <th>{carriers.get(quote.OutboundLeg.CarrierIds[0])}</th> */}
 								<th>{departDate.toDateString()}</th>
 								<th>{props.quotes.Currencies[0].Symbol + " " + quote.MinPrice}</th>
 							</tr>);
