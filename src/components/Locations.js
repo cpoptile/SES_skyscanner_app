@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Locations.css';
 
 /**
- * Description: 
+ * Description: Function serves as an autocomplete component for destination fields.
  * 
  * @param {*} props 
  * @returns An input field that autocompletes a user's input
@@ -14,9 +14,13 @@ function Auto(props) {
     const [search, setSearch] = useState("");
     const wrapperRef = useRef(null);
 
+    /**
+     * Function loads in hook to avoid empty errors and initialize component.
+     * 
+     * @param {*} e event
+     */
     function noSearch(e) {
         e.preventDefault()
-        console.log("peee");
         async function fetchInitialList() {
             setSearch("")
             const reqOptions = {
@@ -27,9 +31,7 @@ function Auto(props) {
                 }
             }
             let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?query=-/", reqOptions)
-            console.log(response)
             response = await response.json()
-            console.log(response.Places)
             setOptions(response.Places.map(place => {
                 return { 
                     value: place.CityId, 
@@ -40,17 +42,18 @@ function Auto(props) {
         fetchInitialList()
     }
 
+    /**
+     * Function calls to the API to return a list of places based
+     * on the user's input.
+     * 
+     * @param {*} e event- key typed
+     */
     function handleSearch(e) {
-        console.log(e)
-        console.log(e.value)
-        console.log(e.target.value)
         let value = e.target.value
-        console.log(e.target.value = "-")
         if (!value) {
             noSearch(e)
         } else {
             e.preventDefault()
-
             setSearch(value)
             async function fetchPlaces() {
                 const reqOptions = {
@@ -61,9 +64,7 @@ function Auto(props) {
                     }
                 }
                 let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?" + new URLSearchParams({ query: value }), reqOptions)
-                console.log(response)
                 response = await response.json()
-                console.log(response.Places)
                 setOptions(response.Places.map(place => {
                     let idCode
                     if (place.CityId === "-sky"){
@@ -82,14 +83,21 @@ function Auto(props) {
 
     }
 
+    /**
+     * Function returns the value of the input field to be used in
+     * SearchBox.js.
+     * 
+     * @returns input field
+     */
     const sendCity = () => {
-        console.log({ search })
         return (
             search
         );
     };
 
-
+    /**
+     * Function setup to handle outside click.
+     */
     useEffect(() => {
         window.addEventListener("mousedown", handleClickOutside);
         return () => {
@@ -97,6 +105,11 @@ function Auto(props) {
         };
     });
 
+    /**
+     * Const hides the autosuggest field if mouse is clicked outside the container.
+     * 
+     * @param {*} event mouse click
+     */
     const handleClickOutside = event => {
         const { current: wrap } = wrapperRef;
         if (wrap && !wrap.contains(event.target)) {
@@ -104,6 +117,11 @@ function Auto(props) {
         }
     };
 
+    /**
+     * Const updates input field to selected option.
+     * 
+     * @param {*} place place selected form menu
+     */
     const updateSearch = place => {
         props.onChange(place.value)
         setSearch(place.display)
@@ -112,8 +130,12 @@ function Auto(props) {
     };
 
 
+    /**
+     * Returns custom autocomplete component consisting of an input and option container.
+     */
     return (
         <div ref={wrapperRef} className="flex-container flex-column pos-rel">
+            {/* Search box for user */}
             <input
                 id="auto"
                 autocomplete="off"
@@ -140,4 +162,5 @@ function Auto(props) {
 
 };
 
+// Default export statement
 export default Auto;
