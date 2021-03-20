@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
+    "is-svg-element": "^1.0.1",
     "jQuery": "^1.7.4",
     "moment": "^2.29.1",
     "react": "^17.0.1",
